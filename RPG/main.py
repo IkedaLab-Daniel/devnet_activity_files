@@ -5,11 +5,12 @@ def title():
 
 def game_menu():
     print(""" 
-    |========== Menu ===========|
-    |    1   |      Battle      |
-    -----------------------------
-    |    enter "exit" to exit   |
-    =============================
+    |=============== Menu =============|
+    |      1     |        Explore      |
+    |      2     |      View Status    |
+    ------------------------------------
+    |  enter "quit" to save and exit   |
+    ====================================
 """)
 
 def login(username):
@@ -79,6 +80,13 @@ def game(username, new):
             ===================================================
                   """)
             break
+        elif action == '1':
+            explore()
+        elif action == '2':
+            # ! No need to show action again since always show siya every iterit
+            pass
+        else:
+            print("       XXX Invalid Input XXX")
     
 def show_stats(username):
     try:
@@ -86,12 +94,16 @@ def show_stats(username):
             stat_label = ["HP", "Attack", "Defence"]
             stat = file.read()
 
-            print("\n=== Your Stats ===")
+            print("\n     === Your Stats ===")
             for index, stat in enumerate(stat.split()):
-                print(f"   {stat_label[index]}: {stat}")
-            print("==================")
+                print(f"        {stat_label[index]}: {stat}")
+            print("     ==================")
     except: 
         print("Err")
+
+def explore():
+    print("Explore")
+
 
 
 def menu():
