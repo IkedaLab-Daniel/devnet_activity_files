@@ -9,6 +9,16 @@ def save(username, new_hp, attack, defence):
     except:
         print("Save error")
 
+def isAlive(newHP):
+    if newHP <= 0:
+        print(f""" 
+            |===================== Event ===================|
+                           HP Below 0 - You died
+                        User Data will be deleted...
+            |===============================================|
+        """)
+        return "dead"
+
 
 # > Events
 def monstah(username):
@@ -19,29 +29,23 @@ def monstah(username):
         defence = read_file[2]
 
     newHP = float(hp) - (10 * (int(defence) / 200)) 
-    if newHP <= 0:
-        print(f""" 
-            |===================== Event ===================|
-                           HP Below 0 - You died
-                        User Data will be deleted...
-            |===============================================|
-        """)
-        return "dead"
-    else:
-        reduced = (10 * (int(defence) / 200)) 
-        print(f""" 
-            |===================== Event ===================|
-                    You encountered a huge bear!
-                            HP:   -{reduced}
+    reduced = (10 * (int(defence) / 200)) 
+    print(f""" 
+        |===================== Event ===================|
+                You encountered a huge bear!
+                        HP:   -{reduced}
 
-                                New Stats
-                            HP:    {newHP}
-                            Attack: {attack}
-                            Defence: {defence}
-            |===============================================|
-        """)
-        save(username, newHP, attack, defence)
-        return "not_dead"
+                            New Stats
+                        HP:    {newHP}
+                        Attack: {attack}
+                        Defence: {defence}
+        |===============================================|
+    """)
+    save(username, newHP, attack, defence)
+    buhay_pa_ba = isAlive(newHP)
+    if buhay_pa_ba == 'dead':
+        return 'dead'
+    return "not_dead"
 
 def treasure(username):
     with open(f'player_{username}.txt', 'r') as file:

@@ -3,7 +3,12 @@ import utilities
 import os # > will only be use for deleting dead players
 
 def title():
-    print("Welcome to my game")
+    print("""
+    |==================================|
+            Welcome to PyCrawler!
+    |==================================|
+          """)
+    
 
 def game_menu():
     print(""" 
@@ -19,11 +24,11 @@ def login(username):
     try:
         with open(f'player_{username}.txt', 'x') as file:
             print(f""" {username} not found, registering... """)
-            print(f"Success! Welcome {username}.")
+            print(f"Success! Welcome Player: {username}.")
             game(username, True)
     except:
         print(f"{username} exists. Logging in...")
-        print(f"Welcome {username}")
+        print(f"Welcome Player: {username}")
         game(username, False)
 
 def game(username, new):
@@ -31,40 +36,44 @@ def game(username, new):
         # > Since bago yung user, pa-select natin siya ng class
         if (new):
             with open(f'player_{username}.txt', 'w') as file:
-                print("|========== Classes ============|\n")
-                for index, char_class in enumerate(utilities.character_classes, 1):
-                        print(f"           {index}. {char_class}")
-                print("\n|========= (Select 1-5) ===========|\n")
-            
+                while True:     # > Validation loop
+                    print("|========== Classes ============|\n")
+                    for index, char_class in enumerate(utilities.character_classes, 1):
+                            print(f"           {index}. {char_class}")
+                    print("\n|========= (Select 1-5) ===========|\n")
 
-                character_class_choice = input("Select a class above [0-5]: ")
 
-                if character_class_choice == '1':
-                    # ? Warrior
-                    file.write("100 50 80")
-                    print("You Selected Warrior")
-                elif character_class_choice == '2':
-                    # ? Mage
-                    file.write("100 65 60")
-                    print("You Selected Mage")
-                elif character_class_choice == '3':
-                    # ? Assasin
-                    file.write("100 80 30")
-                    print("You Selected Assasic")
+                    character_class_choice = input("Select a class above [0-5]: ")
 
-                elif character_class_choice == '4':
-                    # ? Shooter
-                    file.write("150 30 60")
-                    print("You Selected Shooter")
-                elif character_class_choice == '5':
-                    # ? Healer
-                    file.write("200 10 100")
-                    print("You Selected Healer")
+                    if character_class_choice == '1':
+                        # ? Warrior
+                        file.write("100 50 80")
+                        print("You Selected Warrior")
+                        break
+                    elif character_class_choice == '2':
+                        # ? Mage
+                        file.write("100 65 60")
+                        print("You Selected Mage")
+                        break
+                    elif character_class_choice == '3':
+                        # ? Assasin
+                        file.write("100 80 30")
+                        print("You Selected Assasic")
+                        break
+                    elif character_class_choice == '4':
+                        # ? Shooter
+                        file.write("150 30 60")
+                        print("You Selected Shooter")
+                        break
+                    elif character_class_choice == '5':
+                        # ? Healer
+                        file.write("200 10 100")
+                        print("You Selected Healer")
+                        break
+                    else:
+                        print("Invalid input")
 
-                else:
-                    print("Invalid input")
-
-                new = False
+                    new = False
 
         #> display stas after login
         show_stats(username)
@@ -76,7 +85,7 @@ def game(username, new):
             print(f"""
             |===================== Loggin out ================|
             |     Please don't forget your username T_T       |
-                         > Username: {username}
+                         > Username: "{username}"
             ---------------------------------------------------
             |                       Bye!                      |
             ===================================================
