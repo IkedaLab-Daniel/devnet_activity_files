@@ -12,6 +12,7 @@ def login(username):
     except:
         print(f"{username} exists. Logging in...")
         print(f"Welcome {username}")
+        game(username, False)
 
 def game(username, new):
     # > Since bago yung user, pa-select natin siya ng class
@@ -37,17 +38,17 @@ def game(username, new):
 
             elif character_class_choice == '4':
                 # ? Shooter
-                file.write("You 150 30 60")
+                file.write("150 30 60")
                 print("You Selected Shooter")
             elif character_class_choice == '5':
                 # ? Healer
-                file.write("You 200 10 100")
-                print("Selected Healer")
+                file.write("200 10 100")
+                print("You Selected Healer")
 
             else:
                 print("Invalid input")
 
-        show_stats(username)
+    show_stats(username)
     
 def show_stats(username):
     try:
@@ -55,7 +56,7 @@ def show_stats(username):
             stat_label = ["HP", "Attack", "Defence"]
             stat = file.read()
 
-            print("=== Your Stats ===")
+            print("\n=== Your Stats ===")
             for index, stat in enumerate(stat.split()):
                 print(f"   {stat_label[index]}: {stat}")
             print("==================")
