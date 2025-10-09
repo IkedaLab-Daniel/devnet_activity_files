@@ -1,3 +1,4 @@
+import random
 import utilities
 
 def title():
@@ -81,7 +82,7 @@ def game(username, new):
                   """)
             break
         elif action == '1':
-            explore()
+            explore(username)
         elif action == '2':
             # ! No need to show action again since always show siya every iterit
             pass
@@ -101,8 +102,10 @@ def show_stats(username):
     except: 
         print("Err")
 
-def explore():
-    print("Explore")
+def explore(username):
+    event = random.randint(1, 10)
+    utilities.monstah(username)
+
 
 
 
