@@ -104,9 +104,12 @@ def show_stats(username):
 
 def explore(username):
     event = random.randint(1, 10)
-    utilities.treasure(username)
-
-
+    if event >= 6 and event <= 10:
+        utilities.treasure(username)
+    elif event >= 3 and event < 6:
+        utilities.monstah(username)
+    else:
+        utilities.nothing() 
 
 
 def menu():

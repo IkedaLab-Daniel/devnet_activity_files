@@ -5,7 +5,7 @@ def save(username, new_hp, attack, defence):
     try:
         with open(f'player_{username}.txt', 'w') as file:
             file.write(f"{new_hp} {attack} {defence}")
-            print("New stat save")
+            print("                     >>> Status Saved <<<")
     except:
         print("Save error")
 
