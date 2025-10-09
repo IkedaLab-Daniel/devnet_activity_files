@@ -19,19 +19,29 @@ def monstah(username):
         defence = read_file[2]
 
     newHP = float(hp) - (10 * (int(defence) / 200)) 
-    reduced = (10 * (int(defence) / 200)) 
-    print(f""" 
-        |===================== Event ===================|
-                   You encountered a huge bear!
-                        HP:   -{reduced}
+    if newHP <= 0:
+        print(f""" 
+            |===================== Event ===================|
+                           HP Below 0 - You died
+                        User Data will be deleted...
+            |===============================================|
+        """)
+        return "dead"
+    else:
+        reduced = (10 * (int(defence) / 200)) 
+        print(f""" 
+            |===================== Event ===================|
+                    You encountered a huge bear!
+                            HP:   -{reduced}
 
-                            New Stats
-                        HP:    {newHP}
-                        Attack: {attack}
-                        Defence: {defence}
-        |===============================================|
-    """)
-    save(username, newHP, attack, defence)
+                                New Stats
+                            HP:    {newHP}
+                            Attack: {attack}
+                            Defence: {defence}
+            |===============================================|
+        """)
+        save(username, newHP, attack, defence)
+        return "not_dead"
 
 def treasure(username):
     with open(f'player_{username}.txt', 'r') as file:

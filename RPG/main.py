@@ -1,5 +1,6 @@
 import random
 import utilities
+import os # > will only be use for deleting dead players
 
 def title():
     print("Welcome to my game")
@@ -82,7 +83,9 @@ def game(username, new):
                   """)
             break
         elif action == '1':
-            explore(username)
+            explore_result = explore(username)
+            if explore_result == "player_died":
+                break
         elif action == '2':
             # ! No need to show action again since always show siya every iterit
             pass
@@ -107,7 +110,10 @@ def explore(username):
     if event >= 6 and event <= 10:
         utilities.treasure(username)
     elif event >= 3 and event < 6:
-        utilities.monstah(username)
+        event_result = utilities.monstah(username)
+        if event_result == 'dead':
+            os.remove(f"player_{username}.txt")
+            return 'player_died' # > para alam ni game(), then break na yung loop
     else:
         utilities.nothing() 
 
