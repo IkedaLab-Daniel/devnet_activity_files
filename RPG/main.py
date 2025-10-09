@@ -104,7 +104,7 @@ def show_stats(username):
 
 def explore(username):
     event = random.randint(1, 10)
-    utilities.monstah(username)
+    utilities.treasure(username)
 
 
 

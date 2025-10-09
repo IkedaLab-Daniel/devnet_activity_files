@@ -32,3 +32,33 @@ def monstah(username):
         |===============================================|
     """)
     save(username, newHP, attack, defence)
+
+def treasure(username):
+    with open(f'player_{username}.txt', 'r') as file:
+        read_file = file.read().split()
+        hp = read_file[0]
+        attack = read_file[1]
+        defence = read_file[2]
+
+    newHP = float(hp) + 10
+    added = 10
+    print(f""" 
+        |===================== Event ===================|
+                   You got a bigggggg treasure
+                        HP:   +{added}
+
+                            New Stats
+                        HP:    {newHP}
+                        Attack: {attack}
+                        Defence: {defence}
+        |===============================================|
+    """)
+    save(username, newHP, attack, defence)
+
+def nothing():
+    print(f""" 
+        |===================== Event ===================|
+                You walk around for an hour and
+                    encountered nothing...
+        |===============================================|
+    """)
